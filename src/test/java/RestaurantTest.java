@@ -7,6 +7,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -64,4 +66,20 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>Total Order Cost<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void should_return_sum_of_the_selected_menu_items_cost() {
+        List<String> selectedItems = new ArrayList<>();
+        selectedItems.add("Biryani");
+        selectedItems.add("Full meals");
+        assertEquals(160+200, restaurant.costOfSelectedItems(selectedItems));
+    }
+
+    @Test
+    public void should_return_0_when_no_item_is_selected() {
+        List<String> selectedItems = new ArrayList<>();
+        assertEquals(0, restaurant.costOfSelectedItems(selectedItems));
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<Total Order Cost>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
