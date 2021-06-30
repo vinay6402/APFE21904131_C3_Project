@@ -65,4 +65,15 @@ public class Restaurant {
         return name;
     }
 
+    // Implementation of total cost of selected items
+    public int costOfSelectedItems(List<String> selectedItems) {
+        int totalCost = 0;
+        for(String selectedItem : selectedItems) {
+            for(Item item : menu){
+                if(selectedItem.equalsIgnoreCase(item.getName()))
+                    totalCost += item.getPrice();
+            }
+        }
+        return totalCost;
+    }
 }
